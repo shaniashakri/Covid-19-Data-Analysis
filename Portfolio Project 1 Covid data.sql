@@ -1,3 +1,4 @@
+-- Data downloaded from https://ourworldindata.org/covid-deaths
 -- Query 1: Retrieving COVID death data for locations with continents specified
 SELECT 
     location, 
