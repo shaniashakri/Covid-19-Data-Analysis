@@ -13,5 +13,8 @@ This repository is dedicated to an ongoing SQL-based analytics project analyzing
 - **Data Correlation:** Merge death and vaccination datasets to derive combined insights.
 - **Population Vaccination Percentage:** Compute the rolling total and percentages of populations vaccinated over time.
 
-Dataset 
+### For visualization, refer: 
+_https://public.tableau.com/app/profile/shania.shakri/viz/Book1_17078045963330/Dashboard1_
+
+
 _This README is a work in progress and will be updated as the project develops._
