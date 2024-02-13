@@ -1,5 +1,6 @@
 -- Data visualization queries for Tableau
-
+-- https://public.tableau.com/app/profile/shania.shakri/viz/Book1_17078045963330/Dashboard1?publish=yes
+    
 -- Query 1: Total Cases, Total Deaths, and Death Percentage by Continent:
 SELECT 
     SUM(new_cases) AS total_cases, 
