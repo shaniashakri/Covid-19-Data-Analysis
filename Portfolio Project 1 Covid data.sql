@@ -100,7 +100,41 @@ GROUP BY
 ORDER BY 
     date;
 
--- Query 8: Joining COVID death and vaccine tables
+
+--Query 8: Countries with Highest Cases per Million Population:
+SELECT 
+    location AS country,
+    MAX(date) AS latest_date,
+    MAX(total_cases) AS total_cases,
+    MAX(total_cases) / MAX(population) * 1000000 AS cases_per_million
+FROM 
+    PortfolioProject1..['covid-deaths$']
+WHERE 
+    continent IS NOT NULL
+GROUP BY 
+    location
+ORDER BY 
+    cases_per_million DESC;
+
+
+
+-- Quesry 9: Top 10 Countries by Vaccination Rate Increase:
+SELECT TOP 10
+    location AS country,
+    MAX(date) AS latest_date,
+    MAX(CAST(new_vaccinations AS FLOAT)) AS max_daily_vaccinations,
+    (MAX(CAST(new_vaccinations AS FLOAT)) - MIN(CAST(new_vaccinations AS FLOAT))) AS vaccination_rate_increase
+FROM 
+    PortfolioProject1..['covid-vaccines$']
+WHERE 
+    continent IS NOT NULL
+GROUP BY 
+    location
+ORDER BY 
+    vaccination_rate_increase DESC;
+
+
+-- Query 10: Joining COVID death and vaccine tables
 SELECT *
 FROM 
     PortfolioProject1..['covid-deaths$'] dth
@@ -110,7 +144,7 @@ ON
     dth.location = vac.location
     AND dth.date = vac.date;
 
--- Query 9: Percentage of population vaccinated over time
+-- Query 11: Percentage of population vaccinated over time
 WITH PopulationvsVaccination (Continent, location, date, population, new_vaccinations, RollingPeopleVaccinated) AS
 (
     -- Subquery to calculate rolling vaccination count
@@ -140,7 +174,7 @@ FROM
     PopulationvsVaccination;
 
 
--- Query 10: Creating temp table to store intermediate results
+-- Query 12: Creating temp table to store intermediate results
 IF OBJECT_ID('tempdb..#PopulationvsVaccination', 'U') IS NOT NULL
     DROP TABLE #PopulationvsVaccination;
 
